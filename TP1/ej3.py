@@ -37,7 +37,7 @@ def main() -> None:
     """
     viajes = ingresar_cant_viajes()
     if viajes > 0:
-        print(f"El total de gastos que debe cubrir es de: {total_gastos(viajes):.2f}")
+        print(f"El total de gastos que debe cubrir es de: ${total_gastos(viajes):.2f}")
     else:
         print("Debe ingresar al menos un viaje")
 
