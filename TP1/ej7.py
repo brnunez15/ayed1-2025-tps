@@ -1,3 +1,33 @@
+def validar_fecha(dia: int, mes: int, anio: int) -> bool:
+    """
+    Valida 3 números enteros, el cual debera cumplir con requisitos de una fecha real.
+
+    Pre: Los 3 números ingresados deben ser enteros positivos.
+
+    Post: Devuelve un valor booleano que indica si la fecha es válida (True) o no (False).
+    """
+
+    if anio < 1900 or anio > 2025:
+            return False
+
+    if mes < 1 or mes > 12:
+        return False
+    
+    if mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
+        return dia >= 1 or dia <= 31
+
+    elif mes == 4 or mes == 6 or mes == 9:
+        return dia >= 1 or dia <= 30
+
+    if mes == 2:
+
+        if es_bisiesto(anio):  
+            return dia >= 1 or dia <= 29
+
+        else:
+             return dia >= 1 or dia <= 28
+
+
 def es_bisiesto (anio: int) -> bool:
      """
      Verifica si un año ingresado es bisiesto, o no.
@@ -70,16 +100,19 @@ def ingresar_fecha () -> int:
 
 
 def main ():
-
     dia, mes, anio = ingresar_fecha()
-    dia_sig, mes_sig, anio_sig = dia_siguiente(dia, mes, anio)
+    if validar_fecha(dia, mes, anio) == True:
 
-    print(f"El dia siguiente de la fecha ingresada es: {dia_sig}/{mes_sig}/{anio_sig}")
+        dia_sig, mes_sig, anio_sig = dia_siguiente(dia, mes, anio)
 
-    dias_a_sumar = int(input("Ingrese la cantidad de dias a sumar: "))
-    dia_nuevo, mes_nuevo, anio_nuevo = sumar_dias(dia, mes, anio, dias_a_sumar)
+        print(f"El dia siguiente de la fecha ingresada es: {dia_sig}/{mes_sig}/{anio_sig}")
 
-    print(f"La fecha luego de agregar la cantidad de dias nuevos es: {dia_nuevo}/{mes_nuevo}/{anio_nuevo}")
+        dias_a_sumar = int(input("Ingrese la cantidad de dias a sumar: "))
+        dia_nuevo, mes_nuevo, anio_nuevo = sumar_dias(dia, mes, anio, dias_a_sumar)
+
+        print(f"La fecha luego de agregar {dias_a_sumar} dia/s es: {dia_nuevo}/{mes_nuevo}/{anio_nuevo}")
+    else:
+        print("Debe ingresasar una fecha valida")
 
 if __name__ == "__main__":
     main()
