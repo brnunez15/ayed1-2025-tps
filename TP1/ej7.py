@@ -38,7 +38,7 @@ def es_bisiesto (anio: int) -> bool:
      """
      return (anio % 4 == 0 and anio % 100 != 0) or anio % 400 == 0
 
-def dia_siguiente (dia: int, mes: int, anio: int):
+def dia_siguiente (dia: int, mes: int, anio: int) -> tuple:
 
     meses_31 = [1, 3, 5, 7, 8, 10, 12]
     meses_30 = [4, 6, 9, 11]
@@ -80,7 +80,7 @@ def dia_siguiente (dia: int, mes: int, anio: int):
 
     return dia, mes, anio
 
-def sumar_dias (dia: int, mes: int, anio: int, n: int):
+def sumar_dias (dia: int, mes: int, anio: int, n: int) -> tuple:
 
     for _ in range(n + 1):
         dia, mes, anio = dia_siguiente(dia, mes, anio)

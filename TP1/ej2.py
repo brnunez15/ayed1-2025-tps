@@ -38,7 +38,7 @@ def es_bisiesto (anio: int) -> bool:
      """
      return (anio % 4 == 0 and anio % 100 != 0) or anio % 400 == 0
 
-def ingresar_fecha () -> int:
+def ingresar_fecha () -> tuple:
      """
      Permite que el usuario ingrese una fecha con numeros enteros, ya sea valida o no.
 
