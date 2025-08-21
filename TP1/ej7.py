@@ -122,6 +122,9 @@ def diferencia_dias(d1: int, m1: int, a1: int, d2: int, m2: int, a2: int) -> int
 
     if validar_fecha(d1, m1, a1) == True and validar_fecha(d2, m2, a2) == True:
 
+        if (a1, m1, d1) > (a2, m2, d2):
+            d1, m1, a1, d2, m2, a2 = d2, m2, a2, d1, m1, a1
+
         contador = 0
 
         while (d1, m1, a1) != (d2, m2, a2):
