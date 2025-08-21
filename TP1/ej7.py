@@ -27,7 +27,6 @@ def validar_fecha(dia: int, mes: int, anio: int) -> bool:
         else:
              return dia >= 1 or dia <= 28
 
-
 def es_bisiesto (anio: int) -> bool:
      """
      Verifica si un año ingresado es bisiesto, o no.
@@ -112,7 +111,7 @@ def ingresar_fecha () -> int:
      anio = int(input("Ingrese el anio: "))
      return dia, mes, anio
 
-def diferencia_dias(d1, m1, a1, d2, m2, a2) -> int:
+def diferencia_dias(d1: int, m1: int, a1: int, d2: int, m2: int, a2: int) -> int:
     """
     Genera una diferencia de dias entre dos fechas ingresadas.
 
@@ -120,21 +119,23 @@ def diferencia_dias(d1, m1, a1, d2, m2, a2) -> int:
 
     Post: Devuelve un entero representando la cantidad de dias que hace la diferencia entre las fechas.
     """
-    contador = 0
 
-    while (d1, m1, a1) != (d2, m2, a2):
-        d1, m1, a1 = dia_siguiente(d1, m1, a1)
-        contador += 1
+    if validar_fecha(d1, m1, a1) == True and validar_fecha(d2, m2, a2) == True:
 
-    return contador
+        contador = 0
 
+        while (d1, m1, a1) != (d2, m2, a2):
+            d1, m1, a1 = dia_siguiente(d1, m1, a1)
+            contador += 1
+
+        return contador
 
 def main () -> None:
     """
     Funcion principal del programa.
     """
     dia, mes, anio = ingresar_fecha()
-    
+
     if validar_fecha(dia, mes, anio) == True:
 
         dia_sig, mes_sig, anio_sig = dia_siguiente(dia, mes, anio)
@@ -161,7 +162,6 @@ def main () -> None:
             print("Las fechas son iguales. No hay diferencia.")
     else:
         print("Debe ingresasar una fecha valida")
-
 
 if __name__ == "__main__":
     main()
