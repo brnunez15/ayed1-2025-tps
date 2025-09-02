@@ -2,7 +2,7 @@ import random as rn
 from typing import List, Tuple
 from random import randint
 
-# Ejercicio "a" y "b":
+# Ejercicio "a":
 
 def cargar_lista() -> List[int]:
     """
@@ -13,6 +13,8 @@ def cargar_lista() -> List[int]:
     """
     elementos = rn.randint(10, 99)
     return [rn.randint(1000, 9999) for _ in range (elementos)]
+
+# Ejercicio "b":
 
 def calcular_producto(lista: list[int]) -> int:
     """
