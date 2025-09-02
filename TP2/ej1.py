@@ -14,6 +14,18 @@ def cargar_lista() -> List[int]:
     elementos = rn.randint(10, 99)
     return [rn.randint(1000, 9999) for _ in range (elementos)]
 
+def calcular_producto(lista: list[int]) -> int:
+    """
+    Calcula el producto de todos los elementos de una lista.
+
+    Pre: recibe una lista de numeros enteros.
+
+    Post: Devuelve un entero representando el resultado del producto de los elementos.
+    """
+    producto = 1
+    for num in lista:
+        producto *= num
+    return producto
 
 #Ejercicio "c":
 
@@ -52,6 +64,9 @@ def main() -> None:
     lista_prueba = [50, 17, 91, 17, 50]
     print(f"La lista tiene {len(lista)} elementos")
     print(lista)
+
+    producto = calcular_producto(lista)
+    print(f"El producto de todos los numeros de la lista es de: {producto}")
 
     valor_a_eliminar = int(input("Ingrese un valor para eliminar de la lista: "))
     lista_eliminada, se_encontro = eliminar_valor(lista, valor_a_eliminar)
