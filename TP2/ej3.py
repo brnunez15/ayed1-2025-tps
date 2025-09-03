@@ -15,7 +15,7 @@ def main() -> None:
     lista = generar_lista(numero)
     print(lista)
 
-    print(f"Ultimos 10 valores de la lista: {lista[10:]}")
+    print(f"Ultimos 10 valores de la lista: {lista[-10:]}")
 
 if __name__ == "__main__":
     main()
