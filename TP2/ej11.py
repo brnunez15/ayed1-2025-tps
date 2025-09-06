@@ -8,6 +8,7 @@ def registro_pacientes(num_afiliado: int, estado_consulta: int, turnos: list[int
     Pre: Recibe un numero de afiliado del paciente, el estado de consula, y las listas del tipo de consulta (por turno o por urgencia)
 
     Post: Devuelve una tupla de las listas con el numero de afiliado del paciente segun se haya registrado por el estado de consulta.
+    Tambien retorna None en caso de que el numero de afiliado no cumpla con las condiciones.
     """
 
     patron_afiliado = re.compile(r"\d{4}")
