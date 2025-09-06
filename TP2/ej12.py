@@ -132,7 +132,7 @@ def menu() -> None:
                         if veces > 0:
                             print(f"Socio eliminado: {list(set(eliminados))}")
                             print(f"Se eliminaron {veces} ingresos del socio {n_socio}")
-                            if len(lista_socios) > 0:
+                            if lista_socios:
                                 print(f"Lista de socios luego de haber eliminado: {lista_socios}")
                             else:
                                 print("No hay socios registrados")
