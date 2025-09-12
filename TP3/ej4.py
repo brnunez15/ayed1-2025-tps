@@ -78,6 +78,7 @@ def opciones() -> None:
 
 def menu() -> None:
     matriz = []
+    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
     while True:
         opciones()
         op = int(input("Ingrese una opcion: "))
@@ -115,7 +116,7 @@ def menu() -> None:
             while True:
                 if bicis and dia and fabrica != -1:
                     print(f"\nFabrica que mas produjo en un dia: Fabrica {fabrica + 1}")
-                    print(f"Produjo: {bicis} bicicletas, el dia {dia}")
+                    print(f"Produjo: {bicis} bicicletas, el dia {dias[dia]}")
                 else:
                     print("Aun no hay bicis producidas")
                 
@@ -128,7 +129,7 @@ def menu() -> None:
             total, dia = calcular_dia_mas_productivo(matriz)
             while True:
                 if total and dia != -1:
-                    print(f"El dia mas productivo es el dia: {dia} con {total} producciones.")
+                    print(f"El dia mas productivo es el dia: {dias[dia]} con {total} producciones.")
                 else:
                     print("Aun no hay bicis producidas")
                 
