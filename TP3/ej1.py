@@ -52,10 +52,31 @@ def calcular_porcentaje (columna: int, matriz):
     porcentaje = len(impares) / filas * 100
     return porcentaje
 
-def es_simetrica(matriz1):
-    original = matriz1
-    matriz_transpuesta = trasponer_matriz(matriz1)
-    pass
+def es_simetrica_principal(matriz):
+    n = len(matriz)
+    for f in range(n):
+        for c in range(n):
+            if matriz[f][c] != matriz[c][f]:
+                return False
+    return True
+
+def es_simetrica_secundaria(matriz):
+    n = len(matriz)
+    for f in range(n):
+        for c in range(n):
+            if matriz[f][c] != matriz[n - c - 1][n - f - 1]:
+                return False
+    return True
+
+def es_capicua(matriz):
+    largo_f = len(matriz)   
+    largo_c = len(matriz[0])
+    columnas = list()
+    for c in range(largo_c):
+        columna = [matriz[f][c] for f in range(largo_f)]
+        if columna == columna[::-1]:
+            columnas.append(c)
+    return columnas
 
 def opciones():
     print("Opcion 0: Salir")
@@ -80,11 +101,15 @@ def menu():
         if op == 1:
             n = int(input("Ingrese un numero: "))
             matriz = cargar_matriz(n)
-            print(f"\nMatriz cargada con numeros aleatorios: {matriz} \n")
+            print(f"\nMatriz cargada con numeros aleatorios: \n")
+            for i, fila in enumerate(matriz):
+                print(f"Fila {i}: {fila}")
         
         elif op == 2:
             matriz_ordenada = ordenar_ascendente(matriz)
-            print(f"\nMatriz ordenada: {matriz_ordenada}\n")
+            print(f"\nMatriz ordenada: \n")
+            for i, fila in enumerate(matriz_ordenada):
+                print(f"Fila {i}: {fila}")
 
         elif op == 3:
             filas = len(matriz)
@@ -124,14 +149,22 @@ def menu():
             print(f"{porcentaje:.2f}")
 
         elif op == 8:
-            pass
+            if es_simetrica_principal(matriz):
+                print(f"La matriz {matriz} es simetrica segun su diagonal principal.")
+            else:
+                print(f"La matriz {matriz} no es simetrica segun su diagonal principal.")
 
         elif op == 9:
-            pass
+            if es_simetrica_secundaria(matriz):
+                print(f"La matriz {matriz} es simetrica")
+            else:
+                print(f"La matriz {matriz} no es simetrica.")
 
         elif op == 10:
-            pass
+            columnas_capicuas = es_capicua(matriz)
 
+            print(f"Las columnas capicuas de la matriz son: {columnas_capicuas}")
+            
 def main():
     menu()
     
