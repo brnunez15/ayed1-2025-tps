@@ -1,30 +1,72 @@
 import random as rn
 from random import randint
 import os
+from typing import List
 
-def limpiar_pantalla():
+def limpiar_pantalla() -> None:
+    """
+    Funcion para limpiar pantalla.
+    """
     os.system("cls" if os.name == "nt" else "clear")
 
 def generar_numero() -> int:
+    """
+    Genera un numero entero aleatorio entre el 1, 10.
+
+    Post: retorna un entero aleatorio.
+    """
     return rn.randint(1,10)
 
 def cargar_matriz(n: int) -> list[list[int]]:
+    """
+    Carga una matriz ingresando N desde el usuario.
+
+    Pre: recibe un entero representando la cantidad de filas y columnas.
+
+    Post: devuelve la matriz generada.
+    """
     return[[generar_numero() for _ in range(n)] for _ in range(n)]
 
-def ordenar_ascendente(matriz: list[list[int]]):
+def ordenar_ascendente(matriz: list[list[int]]) -> List[list[int]]:
+    """
+    Ordena todas las filas de una matriz de forma ascendente.
+
+    Pre: recibe la matriz a ordenar.
+
+    Post: devuelve una copia de la matriz original, de manera ordenada ascendentemente.
+    """
     nueva = [fila[:] for fila in matriz]
     for i, fila in enumerate(nueva):
         nueva[i] = sorted(fila)
     return nueva
 
-def intercambiar_filas(fila1: int, fila2: int, matriz):
+def intercambiar_filas(fila1: int, fila2: int, matriz: list[list[int]]) -> List[list[int]]:
+    """
+    Intercambia las posiciones de dos filas, de una matriz.
+
+    Pre: recibe las dos filas a intercambiar, ingresadas por el usuario.
+        Tambien recibe la matriz que se tomara de referencia.
+    
+    Post: devuelve una copia de la matriz, con sus filas intercambiadas.
+    """
     fila1 -= 1
     fila2 -= 1
     nueva = [fila[:] for fila in matriz]
     nueva[fila1], nueva[fila2] = nueva[fila2], nueva[fila1]
     return nueva
 
-def intercambiar_columnas(columna1: int, columna2: int, matriz):
+def intercambiar_columnas(columna1: int, columna2: int, matriz: list[list[int]]) -> List[list[int]]:
+    """
+    Intercambia las posiciones de dos columnas, de una matriz.
+
+    Pre:
+        - columna1: entero, ingresado por el usuario representando una posicion de una columna.
+        - columna2: entero, ingresado por el usuario representando una posicion de una columna.
+        - matriz: matriz que se tomara como referencia.
+
+    Post:
+        - nueva: devuelve una copia de la matriz recibida con sus columnas intercambiadas.
+    """
     columna1 -= 1
     columna2 -= 1
     nueva = [fila[:] for fila in matriz]
@@ -32,19 +74,35 @@ def intercambiar_columnas(columna1: int, columna2: int, matriz):
         fila[columna1], fila[columna2] = fila[columna2], fila[columna1]
     return nueva
 
-def trasponer_matriz(matriz):
+def trasponer_matriz(matriz: list[list[int]]) -> List[list[int]]:
+    """
+    Transpone una matriz. Es decir, convierte las filas en columnas y las columnas en filas.
+
+    Pre:
+        - matriz: recibe la matriz que se tomara de referencia para transponerla.
+    
+    Post:
+        - transpuesta: devuelve una copia de la matriz recibida, con sus elementos transpuestos.
+    """
     filas = len(matriz)
     columnas = len(matriz[0])
-
     transpuesta = [[0]*filas for _ in range(columnas)]
-
     for i in range(filas):
         for j in range(columnas):
             transpuesta[j][i] = matriz[i][j]
-
     return transpuesta
 
-def promedio_fila(fila: int, matriz):
+def promedio_fila(fila: int, matriz: list[list[int]]) -> int:
+    """
+    Calcula el promedio de todos los elementos de una fila.
+
+    Pre:
+        - fila: recibe un entero ingresado por el usuario, representando la posicion de una fila.
+        - matriz: recibe la matriz de referencia.
+    
+    Post: 
+        - promedio: devuelve el promedio calculado de los elementos de una fila.
+    """
     cantidad = 0
     total = 0
     for num in matriz[fila]:
@@ -53,7 +111,17 @@ def promedio_fila(fila: int, matriz):
     promedio = total / cantidad
     return promedio
 
-def calcular_porcentaje (columna: int, matriz):
+def calcular_porcentaje (columna: int, matriz: list[list[int]]) -> int:
+    """
+    Calcula el porcentaje de elementos con valor impar de una columna.
+
+    Pre:
+        - columna: entero ingresado por el usuario, representando la posicion de una columna.
+        - matriz: matriz de referencia para obtener los datos.
+
+    Post:
+        - porcentaje: devuelve el resultado del porcentaje de todos los impares de una columna.
+    """
     filas = len(matriz)
     impares = list()
 
@@ -64,7 +132,17 @@ def calcular_porcentaje (columna: int, matriz):
     porcentaje = len(impares) / filas * 100
     return porcentaje
 
-def es_simetrica_principal(matriz):
+def es_simetrica_principal(matriz: list[list[int]]) -> bool:
+    """
+    Verifica si una matriz es simetrica segun su diagonal principal.
+
+    Pre:
+        - recibe la matriz a verificar.
+    
+    Post:
+        - True: en caso de que la matriz sea simetrica
+        - False: en caso contrario.
+    """
     n = len(matriz)
     for f in range(n):
         for c in range(n):
@@ -72,7 +150,17 @@ def es_simetrica_principal(matriz):
                 return False
     return True
 
-def es_simetrica_secundaria(matriz):
+def es_simetrica_secundaria(matriz: list[list[int]]) -> bool:
+    """
+    Verifica si una matriz es simetrica segun su diagonal secundaria.
+
+    Pre:
+        - recibe la matriz a verificar.
+    
+    Post:
+        - True: en caso de que la matriz sea simetrica
+        - False: en caso contrario.
+    """
     n = len(matriz)
     for f in range(n):
         for c in range(n):
@@ -80,7 +168,16 @@ def es_simetrica_secundaria(matriz):
                 return False
     return True
 
-def es_capicua(matriz):
+def es_capicua(matriz: list[list[int]]) -> List[int]:
+    """
+    Comprueba si las columnas de una matriz son capicuas y muestra las columnas que lo son.
+
+    Pre:
+        - matriz: recibe la matriz a comprobar.
+    
+    Post:
+        - columnas: lista de enteros, representando las columnas capicuas de la matriz.
+    """
     largo_f = len(matriz)   
     largo_c = len(matriz[0])
     columnas = list()
@@ -90,7 +187,10 @@ def es_capicua(matriz):
             columnas.append(c)
     return columnas
 
-def opciones():
+def opciones() -> None:
+    """
+    Mustra todas las opciones del menu.
+    """
     print("Opcion 0: Salir")
     print("Opcion 1: Cargar numeros enteros en una matriz.")
     print("Opcion 2: Ordenar de forma ascendente cada una de las filas de la matriz.")
@@ -103,7 +203,7 @@ def opciones():
     print("Opcion 9: Determinar si la matriz es simétrica con respecto a su diagonal secundaria.")
     print("Opcion 10: Determinar qué columnas de la matriz son palíndromos (capicúas).")
 
-def menu():
+def menu() -> None:
     matriz = list()
 
     while True:
@@ -117,8 +217,8 @@ def menu():
 
         if op == 1:
             while True:
-                
                 print("\n--CARGAR MATRIZ--\n")
+
                 n = int(input("Ingrese un numero: "))
                 matriz = cargar_matriz(n)
                 print(f"\nMatriz cargada con numeros aleatorios: \n")
@@ -136,7 +236,6 @@ def menu():
             while True:
 
                 if matriz:
-
                     matriz_ordenada = ordenar_ascendente(matriz)
 
                     print(f"Matriz original: \n")
@@ -148,11 +247,9 @@ def menu():
                     
                     for i, fila in enumerate(matriz_ordenada):
                         print(f"Fila {i}: {fila}")
-                    
-                    
                 else:
                     print("No hay una matriz cargada\n")
-                    
+
                 salir = int(input("\nIngrese 0 para volver al menu: "))
 
                 if salir == 0:
@@ -166,8 +263,8 @@ def menu():
                     filas = len(matriz)
 
                     while True:
-
                         print("\nMatriz original: \n")
+
                         for i, fila in enumerate(matriz):
                             print(f"Fila {i+1}: {fila}")
 
@@ -181,7 +278,6 @@ def menu():
                             for i, fila in enumerate(matriz_intercambiada):
                                 print(f"Fila {i+1}: {fila}")
                             break
-
                         else:
                             print(f"\nDebe ingresar una cantidad de filas validas\n") 
                 else:
@@ -193,13 +289,10 @@ def menu():
                     break
 
         elif op == 4:
-
             print("\n--INTERCAMBIAR COLUMNAS--\n")
 
             while True:
-
                 if matriz:
-                    
                     print("\nMatriz original: \n")
 
                     for i, f in enumerate(matriz):
@@ -207,11 +300,9 @@ def menu():
 
                     col1 = int(input("\nIngrese la primer columna: "))
                     col2 = int(input("Ingrese la segunda columna: "))
-
                     columnas = len(matriz[0])
 
                     if 1 <= col1 <= columnas and 1 <= col2 <= columnas:
-
                         print(f"\nColumnas {col1} y {col2} intercambiadas: ")
                         matriz_columnas = intercambiar_columnas(col1, col2, matriz)
                         for f in matriz_columnas:
@@ -227,20 +318,16 @@ def menu():
                     break
 
         elif op == 5:
-
             while True:
-
                 print("\n--TRANSPONER MATRIZ--")
 
                 if matriz:
-
                     print("\nMatriz original: \n")
 
                     for i, f in enumerate(matriz):
                         print(f"Fila {i + 1}: {f}")
 
                     matriz_transpuesta = trasponer_matriz(matriz)
-
                     print("\nMatriz transpuesta: \n")
 
                     for i, fila in enumerate(matriz_transpuesta):
@@ -254,18 +341,16 @@ def menu():
                     break
 
         elif op == 6:
-
             print("\n--PROMEDIO DE UNA FILA--\n")
+
             while True:
                 if matriz:
-
                     print("\nMatriz original: \n")
 
                     for i, f in enumerate(matriz):
                         print(f"Fila {i + 1}: {f}")
 
                     filas = len(matriz)
-
                     num = int(input("\nIngrese la fila que desee el promedio: "))
 
                     if 1 <= num <= filas:
@@ -284,9 +369,7 @@ def menu():
         elif op == 7:
             print("\n--PORCENTAJE DE VALORES IMPARES DE UNA COLUMNA--\n")
             while True:
-
                 if matriz:
-
                     print("\nMatriz original: \n")
 
                     for i, f in enumerate(matriz):
@@ -296,12 +379,10 @@ def menu():
                     col = int(input("Ingrese una columna: "))
 
                     if 1 <= col <= columnas:
-
                         porcentaje = calcular_porcentaje(col - 1, matriz)
                         print(f"El porcentaje de la columna {col} es de: {porcentaje:.2f}")
                     else:
                         print("Debe ingresar una cantidad de columnas validas")
-
                 else:
                     print("No hay una matriz cargada\n")
                 
@@ -311,13 +392,9 @@ def menu():
                     break
 
         elif op == 8:
-
             print("\n--SIMETRIA SEGUN SU DIAGONAL PRINCIPAL")
-
             while True:
-
                 if matriz:
-
                     print("\nMatriz original: \n")
 
                     for i, f in enumerate(matriz):
@@ -336,15 +413,10 @@ def menu():
                     break
 
         elif op == 9:
-
             print("\n--SIMETRIA SEGUN SU DIAGONAL SECUNDARIA")
-            
             while True:
-
                 if matriz:
-
                     print("\nMatriz original: \n")
-
                     for i, f in enumerate(matriz):
                         print(f"Fila {i + 1}: {f}")
 
@@ -352,7 +424,6 @@ def menu():
                         print(f"\nLa matriz es simetrica")
                     else:
                         print(f"\nLa matriz no es simetrica.")
-                
                 else:
                     print("No hay una matriz cargada\n")
                 
@@ -362,22 +433,17 @@ def menu():
                     break
 
         elif op == 10:
-
             print("\n--VER COLUMNAS CAPICUAS--\n")
-
             while True:
-
                 if matriz:
-
                     print("\nMatriz original: \n")
-
                     for i, f in enumerate(matriz):
                         print(f"Fila {i + 1}: {f}")
-
                     columnas_capicuas = es_capicua(matriz)
-
-                    print(f"\nLas columnas capicuas de la matriz son: {columnas_capicuas}")
-
+                    if columnas_capicuas:
+                        print(f"\nLas columnas capicuas de la matriz son: {columnas_capicuas}")
+                    else:
+                        print("\nNo hay columnas capicuas\n")
                 else:
                     print("No hay una matriz cargada\n")
                 
@@ -385,11 +451,10 @@ def menu():
 
                 if salir == 0:
                     break
-
         else:
             print(f"Opcion incorrecta")
             
-def main():
+def main() -> None:
     menu()
     
 if __name__ == "__main__":
