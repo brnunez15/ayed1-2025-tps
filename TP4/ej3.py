@@ -13,8 +13,7 @@ def separar_claves(cm: str) -> Tuple[List[str], List[str]]:
         c1, c2: devuelve una tupla de dos listas con las claves separadas (strings) de la clave maestra.
     """
     c1 = [c for i, c in enumerate (cm) if i % 2 == 0 ]
-    c2 =  [c for i, c in enumerate 
-    (cm) if i % 2 != 0 ]
+    c2 =  [c for i, c in enumerate (cm) if i % 2 != 0 ]
     return c1,c2
 
 def main() -> None:
