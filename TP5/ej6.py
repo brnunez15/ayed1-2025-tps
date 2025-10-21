@@ -40,18 +40,23 @@ def main() -> None:
     print(f"Lista cargada: {lista}")
     errores = 0
 
-    while errores < 3:
+    while True:
         try:
-            n = int(input("Ingrese un numero de la lista: "))
+            n = int(input("Ingrese un numero de la lista, -1 para salir: "))
+            if n == -1:
+                print("Saliendo...")
+                break
             try:
-                elemento = buscar_indice(n, lista)
-                print(elemento)
+                indice = buscar_indice(n, lista)
+                print(f"El indice del numero {n} es: {indice}")
             except ValueError:
                 errores += 1
                 print("El numero no esta ingresado en la lista.")
+                if errores == 3:
+                    print(f"Ocurrieron {errores} errores.")
+                    break
         except ValueError:
             print("Debe ingresar un numero entero.")
-    print(f"Ocurrieron {errores} errores. El programa finalizo.")
 
 if __name__ == "__main__":
     main()
