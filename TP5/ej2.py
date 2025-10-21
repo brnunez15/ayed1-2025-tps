@@ -22,6 +22,7 @@ def main() -> None:
 
     except ValueError:
         print("Debe ingresar un numero entero valido para realizar la suma.")
+        print(-1)
 
 if __name__ == "__main__":
     main()
