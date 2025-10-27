@@ -75,9 +75,8 @@ def main() -> None:
     Funcion principal del programa.
     """
     lineas = leer_archivo()
-    print(lineas)
     it, arm, esp = clasificar_apellidos(lineas)
     crear_archivos(it,arm,esp)
-    print("Se realizo bien todo")
+    print("Se realizo todo en perfecto estado.")
 if __name__ == "__main__":
     main()
