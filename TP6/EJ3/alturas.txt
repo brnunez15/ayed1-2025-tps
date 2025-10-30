@@ -1,0 +1,6 @@
+Deporte: Basquet
+Altura: 150 cm - Atleta: brisa
+Altura: 160 cm - Atleta: pepe
+Deporte: Futbol
+Altura: 190 cm - Atleta: juan
+Deporte: Natacion
