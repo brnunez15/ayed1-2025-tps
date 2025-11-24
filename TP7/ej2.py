@@ -34,7 +34,8 @@ def main() -> None:
             if es_binario:
                 numero_int = int(numero_str)
                 convertir = convertir_binario(numero_int)
-                print(convertir)
+                print(f"Binario: {numero}")
+                print(f"Decimal: {convertir}")
                 break
         except ValueError:
             print("\nERROR. Debe ingresar un número entero.\n")
